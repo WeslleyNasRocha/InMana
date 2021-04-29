@@ -7,7 +7,7 @@ defmodule Inmana.Supply do
   @primary_key {:uuid, :binary_id, autogenerate: true}
   @foreign_key_type :binary_id
 
-  @required_params [:description, :expiration_date, :responsible, :restaurant_id]
+  @required_params [:description, :expiration_date, :responsible, :restaurant_uuid]
 
   @derive {Jason.Encoder, only: @required_params ++ [:uuid]}
 
@@ -16,7 +16,7 @@ defmodule Inmana.Supply do
     field :expiration_date, :date
     field :responsible, :string
 
-    belongs_to :restaurant, Restaurant, references: :uuid
+    belongs_to :restaurant, Restaurant, references: :uuid, foreign_key: :restaurant_uuid
 
     timestamps()
   end
